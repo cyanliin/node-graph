@@ -1,0 +1,34 @@
+@import './base.css';
+
+.node-ui {
+  position: absolute;
+  &:hover {
+    >.node-body {
+      background-color: #444;
+
+      .node-type-name {
+        color: #fff;
+      }
+    }
+  }
+
+  >.node-body {
+    background-color: #3c3c3c;
+    // border: 2px solid #888;
+    font-size: 8pt;
+    color: #fff;
+    border-radius: 8px;
+    transition: border 0.1s;
+    overflow: hidden;
+
+    .node-type-name {
+      font-size: 9pt;
+      height: 22px;
+      line-height: 22px;
+      text-align: center;
+      white-space: nowrap;
+      color: #bbb;
+      overflow: hidden;
+    }
+  }
+}

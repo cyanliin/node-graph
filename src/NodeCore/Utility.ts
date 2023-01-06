@@ -16,3 +16,16 @@ export class Vector2 {
     return new Vector2(a.x * value, a.y * value);
   }
 }
+
+export enum Alignment {
+  Top,
+  Left,
+  Right,
+  Bottom,
+  Center,
+}
+
+export enum ConnPointAlignment {
+  Left,
+  Right,
+}

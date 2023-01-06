@@ -32,7 +32,7 @@ export class Node {
     this.title = "Untitled";
     this.inputs = {};
     this.position = {x: 0, y: 0};
-    this.outputPoint = {x: 108, y: 32};
+    this.outputPoint = {x: 92, y: 32};
     this.width = 100;
   }
 

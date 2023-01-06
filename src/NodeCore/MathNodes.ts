@@ -8,9 +8,9 @@ export class NumberNode extends Node {
 
   constructor(id: string, value: number = 0) {
     super(id);
-    this.typeName = 'Number';
+    this.typeName = 'math.number';
     this.value = value;
-    // this.outputPoint = {x: 108, y: 35};
+    this.outputPoint = {x: 80, y: 15};
   }
 
   public setValue(value: number) {
@@ -30,21 +30,21 @@ export class ComputeNode extends Node {
 
   constructor(id: string) {
     super(id);
-    this.typeName = 'Compute';
+    this.typeName = 'math.compute';
     this.type = 'Add';
-
+    this.outputPoint = {x: 90, y: 25};
     this.inputs = {
       'A': {
         key: 'A',
         isSingle: true,
         node: [],
-        offset: {x: -8, y: 35},
+        offset: {x: 10, y: 15},
       },
       'B': {
         key: 'B',
         isSingle: true,
         node: [],
-        offset: {x: -8, y: 50},
+        offset: {x: 10, y: 35},
       },
     }
   }

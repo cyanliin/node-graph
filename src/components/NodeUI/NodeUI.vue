@@ -83,7 +83,7 @@ const inputLint = computed((): NodeInputInfo[] => {
   &:hover {
     >.node-body {
       background-color: #3c3c3c;
-      border: 1px solid #aaa;
+      // border-color: #aaa;
 
       .node-type-name {
         color: #fff;
@@ -92,8 +92,8 @@ const inputLint = computed((): NodeInputInfo[] => {
   }
 
   >.node-body {
-    background-color: #222;
-    border: 1px solid #888;
+    background-color: #333;
+    // border: 2px solid #888;
     font-size: 8pt;
     color: #fff;
     border-radius: 8px;
@@ -101,7 +101,7 @@ const inputLint = computed((): NodeInputInfo[] => {
     overflow: hidden;
 
     .node-type-name {
-      font-size: 8pt;
+      font-size: 9pt;
       height: 22px;
       line-height: 22px;
       text-align: center;
@@ -116,30 +116,11 @@ const inputLint = computed((): NodeInputInfo[] => {
     }
 
     .node-field {
-      background-color: #222;
+      // background-color: #222;
       padding: 4px;
       color: #fff;
       text-align: center;
       font-weight: bold;
-    }
-  }
-
-  .conn-point {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    background-color: #111;
-    border: 1px solid tomato;
-
-    &.hasConnect {
-      background-color: tomato;
-      border-color: #111;
-    }
-
-    &.output {
-      background-color: tomato;
-      border: 1px solid #111;
     }
   }
 }

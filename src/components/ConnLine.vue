@@ -20,10 +20,15 @@ const toPoint = computed(() => {
 </script>
 <template>
   <line
+    class="conn-line"
     :x1="fromPoint.x" :y1="fromPoint.y"
     :x2="toPoint.x" :y2="toPoint.y"
-    style="stroke: Tomato;stroke-width: 2px"
+    style="stroke-width: 2px"
   />
 </template>
 <style lang="scss">
+@import "@/assets/style/colors.scss";
+.conn-line {
+  stroke: $line-color;
+}
 </style>

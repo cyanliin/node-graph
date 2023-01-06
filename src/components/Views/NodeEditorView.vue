@@ -3,9 +3,21 @@ import { ref, computed, defineAsyncComponent } from 'vue';
 import type { Ref, Component } from 'vue';
 import type { Node, NodeConnection } from '@/NodeCore/Node';
 import DataTable from '@/components/Hud/DataTable.vue';
-import ConnectionLine from '@/components/ConnectionLine.vue';
+import ConnLine from '@/components/ConnLine.vue';
 import NodeUI from '@/components/NodeUI/NodeUI.vue';
 import type { Vector2 } from '@/NodeCore/Utility';
+
+
+// Define all node UI for dynamic components
+export interface NodeTypeMap {
+  [key: string]: Component
+}
+const nodeTypeMap: NodeTypeMap = {
+  'math.number': defineAsyncComponent(() => import('@/components/NodeUI/NumberNodeUI.vue')),
+  'math.compute': defineAsyncComponent(() => import('@/components/NodeUI/ComputeNodeUI.vue')),
+};
+
+
 
 const props = defineProps<{
  nodes: Node[]
@@ -122,7 +134,7 @@ const connLines = computed(():NodeConnection[] => {
       :style="{transform: `translate(${canvasPosition.x}px, ${canvasPosition.y}px)`}"
     >
       <svg style="width: 100%; height: 100%; overflow: visible;">
-        <ConnectionLine
+        <ConnLine
           v-for="line in connLines"
           :from="line.from"
           :to="line.to"
@@ -136,12 +148,13 @@ const connLines = computed(():NodeConnection[] => {
       class="nd-layer nodes"
       :style="{transform: `translate(${canvasPosition.x}px, ${canvasPosition.y}px)`}"
     >
-      <NodeUI
+      <component
+        :is="nodeTypeMap[node.typeName]"
         v-for="node in nodes"
         :node="node"
         @mousedown="onNodeMouseDown"
       >
-      </NodeUI>
+      </component>
     </div>
 
   </div>
