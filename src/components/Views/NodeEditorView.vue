@@ -23,6 +23,11 @@ const props = defineProps<{
  nodes: Node[]
 }>();
 
+const emit = defineEmits<{
+  (e: 'select-node', node: Node): void
+}>()
+
+
 // Mouse Hud
 const isDisplayMouseInfo: Ref<boolean> = ref(true);
 const mousePosition: Ref<Vector2> = ref({x: 0, y: 0});
@@ -71,6 +76,7 @@ const onNodeMouseDown = (node: Node, event: any) => {
   draggingNode = node;
   dragginOffsert = node.position;
   dragginStartPoint = {x: event.clientX, y: event.clientY};
+  emit('select-node', node);
 }
 
 const mouseInfo = computed(() => {

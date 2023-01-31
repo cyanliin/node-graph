@@ -40,6 +40,12 @@ nodes.value.push(c1);
 nodes.value.push(d);
 nodes.value.push(c2);
 
+
+
+const activeNode: Ref<Node> = ref(c2);
+const onSelectNode = (node:Node) => {
+  activeNode.value = node;
+}
 </script>
 
 <template>
@@ -47,10 +53,10 @@ nodes.value.push(c2);
     <Window>
         <DefaultLayout>
             <template #default>
-                <NodeEditorView :nodes="nodes"></NodeEditorView>
+                <NodeEditorView :nodes="nodes" @select-node="onSelectNode"></NodeEditorView>
             </template>
             <template #secondary>
-                <ResultView></ResultView>
+                <ResultView :node="activeNode"></ResultView>
             </template>
             <template #statusBar>
                 <StatusBarView></StatusBarView>
