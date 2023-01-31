@@ -16,7 +16,7 @@ const b: NumberNode = new NumberNode('id002', 5);
 b.setPosition({x: 50, y: 150});
 
 const c1: ComputeNode = new ComputeNode('id003');
-c1.setType('Divide');
+c1.setOperator('Divide');
 c1.addInput(a, 'A');
 c1.addInput(b, 'B');
 c1.setPosition({x: 250, y: 100});
@@ -25,7 +25,7 @@ const d: NumberNode = new NumberNode('id004', 3);
 d.setPosition({x: 250, y: 250});
 
 const c2: ComputeNode = new ComputeNode('id005');
-c2.setType('Multiply');
+c2.setOperator('Multiply');
 c2.addInput(c1, 'A');
 c2.addInput(d, 'B');
 c2.setPosition({x: 450, y: 160});

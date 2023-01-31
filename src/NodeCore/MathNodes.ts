@@ -26,13 +26,13 @@ export class NumberNode extends Node {
 // Compute Node
 export class ComputeNode extends Node {
 
-  type: string;
+  operator: string;
 
   constructor(id: string) {
     super(id);
     this.typeName = 'math.compute';
-    this.type = 'Add';
-    this.outputPoint = {x: 90, y: 25};
+    this.operator = 'Add';
+    this.outputPoint = {x: 110, y: 25};
     this.inputs = {
       'A': {
         key: 'A',
@@ -49,8 +49,12 @@ export class ComputeNode extends Node {
     }
   }
 
-  public setType(type: string) :void {
-    this.type = type;
+  public setOperator(type: string) :void {
+    this.operator = type;
+  }
+
+  public getOperator() :string {
+    return this.operator;
   }
 
   public getOutput() :any {
@@ -58,10 +62,10 @@ export class ComputeNode extends Node {
       const a = this.inputs['A'].node[0].getOutput();
       const b = this.inputs['B'].node[0].getOutput();
 
-      if (this.type === "Add") return parseFloat((a + b).toFixed(10));
-      else if (this.type === "Subtract") return parseFloat((a - b).toFixed(10));
-      else if (this.type === "Multiply") return parseFloat((a * b).toFixed(10));
-      else if (this.type === "Divide") return parseFloat((a / b).toFixed(10));
+      if (this.operator === "Add") return parseFloat((a + b).toFixed(10));
+      else if (this.operator === "Subtract") return parseFloat((a - b).toFixed(10));
+      else if (this.operator === "Multiply") return parseFloat((a * b).toFixed(10));
+      else if (this.operator === "Divide") return parseFloat((a / b).toFixed(10));
       else return 0;
     } else {
       return 0;

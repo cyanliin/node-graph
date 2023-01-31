@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import type { Ref } from 'vue';
 import type { Node, NodeInputInfo } from '@/NodeCore/Node';
 import type { ComputeNode } from '@/NodeCore/MathNodes';
 import { ConnPointAlignment } from '@/NodeCore/Utility';
@@ -8,6 +9,8 @@ import ConnPoint from './ConnPoint.vue';
 const props = defineProps<{
  node: ComputeNode
 }>();
+
+const sign:Ref<string> = ref(props.node.getOperator());
 
 // define emit list
 const emit = defineEmits<{
@@ -32,6 +35,10 @@ const inputLint = computed((): NodeInputInfo[] => {
   })
   return inList;
 })
+
+function onOperatorChange() :void {
+  props.node.setOperator(sign.value);
+}
 </script>
 
 <template>
@@ -46,10 +53,12 @@ const inputLint = computed((): NodeInputInfo[] => {
     }"
   >
     <div class="node-body">
-      <div class="sign" v-if="node.type === 'Add'">+</div>
-      <div class="sign" v-if="node.type === 'Substract'">-</div>
-      <div class="sign" v-if="node.type === 'Multiply'">*</div>
-      <div class="sign" v-if="node.type === 'Divide'">/</div>
+      <select v-model="sign" @change="onOperatorChange">
+        <option value="Add">Add</option>
+        <option value="Substract">Substract</option>
+        <option value="Multiply">Multiply</option>
+        <option value="Divide">Divide</option>
+      </select>
     </div>
     <ConnPoint :position="node.outputPoint" />
     <ConnPoint
@@ -62,16 +71,11 @@ const inputLint = computed((): NodeInputInfo[] => {
 <style lang="scss">
 .node-ui.math-compute {
   .node-body {
+    width: 120px;
     height: 50px;
-
-    .sign {
-      margin: 0 20px;
-      height: 50px;
-      line-height: 50px;
-      font-size: 15pt;
-      font-weight: bold;
-      text-align: center;
-    }
+    display: flex;
+    align-content: center;
+    justify-content: center;
   }
 }
 </style>
